@@ -1,0 +1,16 @@
+{
+  "name": "formatador-novos-colaboradores",
+  "version": "1.0.0",
+  "description": "Script destinado a formatação de tabelas de novos colaboradores para arquivo html",
+  "main": "formatador-novos-colaboradores.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node formatador-novos-colaboradores.js"
+  },
+  "keywords": [
+    "novos-colaboradores"
+  ],
+  "author": "Luís Pedro Piúma <luis.pedro@essentialnutrition.com.br>",
+  "license": "ISC"
+}
