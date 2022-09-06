@@ -9,31 +9,28 @@ const createPhoto = (firstName, lastName) => `<td width="150"><img style="width:
 const createPersonDescription = (firstName, lastName, sector, local) => `<td width="150"><p style="text-align: center; font-family: arial, sans-serif; color: #1a1a1a; font-size: 12px; line-height: 18px; margin-bottom: 30px;"><b>${firstName} ${lastName}<br /></b>${sector}<br/>${local}</p></td>`
 const formatText = text => {
     const objectPerson = text.split(',,\r\n').map(person => person.split(',').filter(el => el !== ''))
-    const createImgRows = () => objectPerson.map((el, index) => {
-        const [person] = el
-        const firstName = person.split(' ').shift()
-        const lastName = person.split(' ').pop()
-        if (index === 0) htmlTextImages += '<tr>'
-        htmlTextImages += createPhoto(firstName, lastName)
-        if ((index + 1) % 4 === 0 && index !== objectPerson.length - 1) htmlTextImages += '</tr>|<tr>'
-        if (index === objectPerson.length - 1) htmlTextImages += '</tr>'
-        return htmlTextImages
-    })
-
-    const createDescriptionRows = () => objectPerson.map((el, index) => {
+    const createRows = () => objectPerson.map((el, index) => {
         const [person, sector, local] = el
         const firstName = person.split(' ').shift()
         const lastName = person.split(' ').pop()
-        if (index === 0) htmlTextInfos += '<tr>'
+        if (index === 0) {
+            htmlTextImages += '<tr>'
+            htmlTextInfos += '<tr>'
+        }
+        htmlTextImages += createPhoto(firstName, lastName)
         htmlTextInfos += createPersonDescription(firstName, lastName, sector, local)
-        if ((index + 1) % 4 === 0 && index !== objectPerson.length - 1) htmlTextInfos += '</tr>|<tr>'
-        if (index === objectPerson.length - 1) htmlTextInfos += '</tr>'
-        return htmlTextInfos
+        if ((index + 1) % 4 === 0 && index !== objectPerson.length - 1) {
+            htmlTextImages += '</tr>|<tr>'
+            htmlTextInfos += '</tr>|<tr>'
+        }
+        if (index === objectPerson.length - 1) {
+            htmlTextImages += '</tr>'
+            htmlTextInfos += '</tr>'
+        }
     })
 
     const matchRows = () => {
-        createImgRows()
-        createDescriptionRows()
+        createRows()
         const imageRows = htmlTextImages.split('|')
         const descriptionRows = htmlTextInfos.split('|')
         const numberOfRows = imageRows.length === descriptionRows.length ? imageRows.length : new Error('Image rows lenght is diferent of description rows lenght.')
