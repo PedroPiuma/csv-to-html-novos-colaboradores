@@ -18,7 +18,7 @@ const formatText = text => {
         const firstName = upperCaseFormatterName(names[0].toLowerCase())
         const lastName = upperCaseFormatterName(names[names.length - 1].toLowerCase())
         const conectorName = names[names.length - 2].length === 2 ? names[names.length - 2] : false
-        const localName = upperCaseFormatterSector(local)
+        const localName = upperCaseFormatterSector(local).replace('jovem', 'Jovem')
         const sectorName = upperCaseFormatterLocal(sector)
         if (index === 0) {
             htmlTextImages += '<tr>'
