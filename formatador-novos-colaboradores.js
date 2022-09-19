@@ -14,8 +14,8 @@ const formatText = text => {
     const objectPerson = text.split(',,\r\n').map(person => person.split(',').filter(el => el !== ''))
     const createRows = () => objectPerson.map((el, index) => {
         const [person, sector, local] = el
-        const firstName = upperCaseFormatterName(person.split(' ').shift().toLowerCase())
-        const lastName = upperCaseFormatterName(person.split(' ').pop().toLowerCase())
+        const firstName = upperCaseFormatterName(person.split(' ').filter(word => word !== '').shift().toLowerCase())
+        const lastName = upperCaseFormatterName(person.split(' ').filter(word => word !== '').pop().toLowerCase())
         const localName = upperCaseFormatterSector(local)
         const sectorName = upperCaseFormatterLocal(sector)
         if (index === 0) {
