@@ -20,7 +20,7 @@ const upperCaseFormatterSector = (text) =>
     ? text.toUpperCase()
     : text
         .split(" ")
-        .map((word) => upperCaseFormatterName(word.toLowerCase()))
+        .map((word) => (word.length > 3 ? upperCaseFormatterName(word.toLowerCase()) : word.toLowerCase()))
         .join(" ")
 const upperCaseFormatterLocal = (text) =>
   text.length <= 5
@@ -40,7 +40,8 @@ const formatText = (text) => {
     })
   const createRows = () =>
     objectPerson.map((el, index) => {
-      const [person, sector, local] = el
+      // const [person, sector, local] = el
+      const [person, local, sector] = el
       const names = person.split(" ").filter((word) => word !== "")
       const firstName = upperCaseFormatterName(names[0].toLowerCase())
       const lastName = upperCaseFormatterName(names[names.length - 1].toLowerCase())
